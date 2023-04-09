@@ -9,11 +9,37 @@
 # Input: convert_number(42, “decimal”, “binary”)
 # Output: 101010
 
-def convert_number(number, from, to)
-  from = number.to_i(from)
-
-  from.to_s(to)
+def convert_number(number, to)
+  if to == 8
+    puts decimal_to_octal(number.to_i)
+  elsif to == 2
+    puts decimal_to_binary(number.to_i)
+  else
+    puts "No conversion found!"
+  end
 end
 
-puts convert_number('10', 10, 8) # Outputs: "12"
-puts convert_number('10', 10, 2) # Outputs: "1010"
+#method to convert decimal number to octal
+def decimal_to_octal(decimal)
+  octal = ""
+  while decimal > 0
+    remainder = decimal % 8
+    octal = remainder.to_s + octal
+    decimal /= 8
+  end
+  octal
+end
+
+#method to convert decimal number to binary
+def decimal_to_binary(decimal)
+  binary = ""
+  while decimal > 0
+    remainder = decimal % 2
+    binary = remainder.to_s + binary
+    decimal /= 2
+  end
+  binary
+end
+
+puts convert_number("10", 8) # Outputs: "12"
+puts convert_number("10", 2) # Outputs: "1010"
